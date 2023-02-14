@@ -2,12 +2,12 @@ import Bot.commands.CommandManager;
 import Listeners.Evelistener;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
 
@@ -23,10 +23,10 @@ public class Bot {
         String token = config.get("TOKEN");
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token); //Passing Token code to build and instantce of bot
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.watching("You drop that combo"));
         builder.enableIntents(GatewayIntent.DIRECT_MESSAGE_REACTIONS,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.MESSAGE_CONTENT,GatewayIntent.GUILD_MEMBERS,GatewayIntent.GUILD_PRESENCES);//Enabling your bot to handle MESSAGES AND MESSAGE REACTIONS
         builder.setMemberCachePolicy(MemberCachePolicy.ALL);
         builder.setChunkingFilter(ChunkingFilter.ALL);
+        builder.enableCache(CacheFlag.ONLINE_STATUS);
         shardManager = builder.build();
 
         // Register Listener, this is how you tell the shardmanager to listen to this class // ADD EVERYTIME, EVENT BASED

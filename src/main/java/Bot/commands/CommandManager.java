@@ -22,7 +22,7 @@ public class CommandManager extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         String command = event.getName();
         switch (command){
-            case "combineall":
+            case "combineeveryone":
             {
                     StringBuilder memAll = new StringBuilder();
                     Role role1 = event.getOption("role1").getAsRole();
@@ -55,7 +55,7 @@ public class CommandManager extends ListenerAdapter {
                 event.getHook().sendMessage(response).queue();
             }
             break;
-            case "combine":
+            case "combinehere":
             {
                 StringBuilder mem = new StringBuilder();
               Role role1 = event.getOption("role1").getAsRole();
@@ -64,12 +64,12 @@ public class CommandManager extends ListenerAdapter {
               System.out.println(guild.getMembersWithRoles(role1,role2));
 
                 List<Member> members = guild.getMembersWithRoles(role1,role2);
-                //Something about this Lambda expression is removing all the string values from my list
+
                 members.removeIf(a->a.getOnlineStatus() != (OnlineStatus.ONLINE));
                 if (members.size() == 0){
                     event.reply("There are no members in one/or both of the roles to ping!").setEphemeral(true).queue();
                 }else{
-                for (Member member:members){
+                for (Member member:members)
                    mem.append(member.getAsMention());
                } event.reply(mem.toString()).queue();}
 
@@ -89,7 +89,6 @@ public class CommandManager extends ListenerAdapter {
 
 
             }
-        }
 
     @Override
     //OnGuildReady only works when added to a Sever, does not work for new roles/events that happen after added to Server!
@@ -98,8 +97,8 @@ public class CommandManager extends ListenerAdapter {
         //NEED TO ADD NEW COMMANDS METHOD TO COMMAND LIST TO RUN IT ON BOT
         //commandData.add(Commands.slash("welcome", "Bot welcome test"));
         commandData.add(Commands.slash("roles","Display all roles on Sever"));
-        commandData.add(Commands.slash("combine","Combining Roles of People Online!").addOption(OptionType.ROLE,"role1","first role",true).addOption(OptionType.ROLE,"role2","second role",true));
-        commandData.add(Commands.slash("combineall", "Combining Roles of People, Online or Offline!").addOption(OptionType.ROLE,"role1", "first role",true ).addOption(OptionType.ROLE,"role2","second role", true));
+        commandData.add(Commands.slash("combinehere","Combining Roles of People Online!").addOption(OptionType.ROLE,"role1","first role",true).addOption(OptionType.ROLE,"role2","second role",true));
+        commandData.add(Commands.slash("combineeveryone", "Combining Roles of People, Regardless of Status!").addOption(OptionType.ROLE,"role1", "first role",true ).addOption(OptionType.ROLE,"role2","second role", true));
         event.getGuild().updateCommands().addCommands(commandData).queue();
     }
 
