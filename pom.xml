@@ -2,11 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>me.oathwindproductions</groupId>
+    <artifactId>Bot1</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <!-- include below build tag to your existing pom.xml  -->
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <name>jcenter-bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>5.0.0-alpha.17</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
-
                 <!-- Building an executable jar -->
 
                 <groupId>org.apache.maven.plugins</groupId>
@@ -25,10 +47,6 @@
             </plugin>
         </plugins>
     </build>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>me.oathwindproductions</groupId>
-    <artifactId>Bot1</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>18</java.version>
         <maven.compiler.source>8</maven.compiler.source>
@@ -36,18 +54,4 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <dependencies>
-        <dependency>
-        <groupId>net.dv8tion</groupId>
-        <artifactId>JDA</artifactId>
-        <version>5.0.0-alpha.17</version>
-    </dependency>
-    </dependencies>
-    <repositories>
-        <repository>
-            <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
-        </repository>
-    </repositories>
 </project>
