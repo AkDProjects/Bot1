@@ -12,7 +12,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import javax.security.auth.login.LoginException;
 
 public class Bot {
-    private Dotenv config;
+    private final Dotenv config;
     //Loads in token and other options for bot
 
     private final ShardManager shardManager;
