@@ -1,5 +1,6 @@
 import Bot.commands.CommandManager;
 import Listeners.Evelistener;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
@@ -12,17 +13,22 @@ import javax.security.auth.login.LoginException;
 
 public class Bot {
 
-    //Loads in token and other options for bot
+    //Loads in token and other options for
+    private final Dotenv config;
+
+
 
     private final ShardManager shardManager;
+
 
     //Constructor for bot. Gives Default options to Bot on it's creation
     public Bot () throws LoginException {
 
-        String token = System.getenv().get("TOKEN");
+        config = Dotenv.configure().load();
+        String token = config.get("TOKEN");
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token); //Passing Token code to build and instantce of bot
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.enableIntents(GatewayIntent.DIRECT_MESSAGE_REACTIONS,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.MESSAGE_CONTENT,GatewayIntent.GUILD_MEMBERS,GatewayIntent.GUILD_PRESENCES);//Enabling your bot to handle MESSAGES AND MESSAGE REACTIONS
+        builder.enableIntents(GatewayIntent.DIRECT_MESSAGE_REACTIONS,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.MESSAGE_CONTENT,GatewayIntent.GUILD_MEMBERS,GatewayIntent.GUILD_PRESENCES,GatewayIntent.GUILD_MESSAGES);//Enabling your bot to handle MESSAGES AND MESSAGE REACTIONS
         builder.setMemberCachePolicy(MemberCachePolicy.ALL);
         builder.setChunkingFilter(ChunkingFilter.ALL);
         builder.enableCache(CacheFlag.ONLINE_STATUS);

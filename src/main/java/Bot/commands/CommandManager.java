@@ -5,7 +5,6 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -91,7 +90,7 @@ public class CommandManager extends ListenerAdapter {
             }
 
     @Override
-    //OnGuildReady only works when added to a Sever, does not work for new roles/events that happen after added to Server!
+    /*OnGuildReady only works when added to a Sever, does not work for new roles/events that happen after added to Server!
     public void onGuildReady (@NotNull GuildReadyEvent event) {
         ArrayList <CommandData> commandData = new ArrayList();
         //NEED TO ADD NEW COMMANDS METHOD TO COMMAND LIST TO RUN IT ON BOT
@@ -100,14 +99,16 @@ public class CommandManager extends ListenerAdapter {
         commandData.add(Commands.slash("combinehere","Combining Roles of People Online!").addOption(OptionType.ROLE,"role1","first role",true).addOption(OptionType.ROLE,"role2","second role",true));
         commandData.add(Commands.slash("combineeveryone", "Combining Roles of People, Regardless of Status!").addOption(OptionType.ROLE,"role1", "first role",true ).addOption(OptionType.ROLE,"role2","second role", true));
         event.getGuild().updateCommands().addCommands(commandData).queue();
-    }
+    }*/
 
-    @Override
     //onReady is for global, meaning this method is accessible once JDA is spun up
     public void onReady(@NotNull ReadyEvent event) {
-        List<CommandData> commandData = new ArrayList<>();
-        commandData.add(Commands.slash("hello","Get welcomed by the bot"));
-        event.getJDA().updateCommands().addCommands(commandData);
+        ArrayList <CommandData> commandData = new ArrayList();
+        //NEED TO ADD NEW COMMANDS METHOD TO COMMAND LIST TO RUN IT ON BOT
+        commandData.add(Commands.slash("roles","Display all roles on Sever"));
+        commandData.add(Commands.slash("combinehere","Combining Roles of People Online!").addOption(OptionType.ROLE,"role1","first role",true).addOption(OptionType.ROLE,"role2","second role",true));
+        commandData.add(Commands.slash("combineeveryone", "Combining Roles of People, Regardless of Status!").addOption(OptionType.ROLE,"role1", "first role",true ).addOption(OptionType.ROLE,"role2","second role", true));
+        event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 }
 
