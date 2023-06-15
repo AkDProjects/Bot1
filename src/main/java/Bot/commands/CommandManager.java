@@ -72,36 +72,9 @@ public class CommandManager extends ListenerAdapter {
                    mem.append(member.getAsMention());
                } event.reply(mem.toString()).queue();}
 
-                /*Command that will take two roles and make a temporary role, then ONLY ping the people who have the sum of that role
-            Create 3 role Vars
-            Role 1 = Role that was typed in first
-            Role 2 = Role that was typed in second
-            Temp role, will hold members from role 1 and 2
-
-
-                List<Role> roles = guild.getRolesByName("admin", true);
-                Role = guild.getRoleById(698231912904523796L);
-
-               List<Member> members = guild.getMembersWithRoles(roles)*/
-
-            }
-
-
-            }
+               
 
     @Override
-    /*OnGuildReady only works when added to a Sever, does not work for new roles/events that happen after added to Server!
-    public void onGuildReady (@NotNull GuildReadyEvent event) {
-        ArrayList <CommandData> commandData = new ArrayList();
-        //NEED TO ADD NEW COMMANDS METHOD TO COMMAND LIST TO RUN IT ON BOT
-        //commandData.add(Commands.slash("welcome", "Bot welcome test"));
-        commandData.add(Commands.slash("roles","Display all roles on Sever"));
-        commandData.add(Commands.slash("combinehere","Combining Roles of People Online!").addOption(OptionType.ROLE,"role1","first role",true).addOption(OptionType.ROLE,"role2","second role",true));
-        commandData.add(Commands.slash("combineeveryone", "Combining Roles of People, Regardless of Status!").addOption(OptionType.ROLE,"role1", "first role",true ).addOption(OptionType.ROLE,"role2","second role", true));
-        event.getGuild().updateCommands().addCommands(commandData).queue();
-    }*/
-
-    //onReady is for global, meaning this method is accessible once JDA is spun up
     public void onReady(@NotNull ReadyEvent event) {
         ArrayList <CommandData> commandData = new ArrayList();
         //NEED TO ADD NEW COMMANDS METHOD TO COMMAND LIST TO RUN IT ON BOT
@@ -112,7 +85,3 @@ public class CommandManager extends ListenerAdapter {
     }
 }
 
-
-///Need method to grab the roles from the sever  :::   FOUND METHOD FOR THAT, ITS event.guild.getRoles(WILL I HAVE TO USE REGEX FOR CONTEXTUAL??)
-//Need to update SLASH COMMANDS to include new syntax for method
-//Need method
