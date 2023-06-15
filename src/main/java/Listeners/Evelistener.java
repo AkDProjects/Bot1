@@ -35,8 +35,8 @@ public class Evelistener extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) {//WILL NOT WORK WITHOUT GATEWAY INTENT
         User id = (User) User.fromId("121112216651956226");//THIS NEEDS TO BE THE ROLE OF THE MEMBER
-        Role role = event.getGuild().getRoleById(String.valueOf((id)));///Have to find a way to get the ID of a user
-        if (role != null){//ID IS AN INT BUT I NEED TO PASS A LONG TO ADD A ROLE TO A MEMBER? FUCK YOU
+        Role role = event.getGuild().getRoleById(String.valueOf((id)));
+        if (role != null){
             event.getGuild().addRoleToMember(event.getMember(),role);
         }
 
@@ -49,7 +49,7 @@ public class Evelistener extends ListenerAdapter {
         //WILL NOT WORK WITHOUT USER CACHE
         User user = event.getUser();
         String message = user.getAsTag() + "Updated their online status!";
-       // event.getGuild().getDefaultChannel().
+       
     }
 
     @Override
